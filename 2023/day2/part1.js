@@ -38,7 +38,6 @@ const answer = data.reduce((sum, str) => {
 		}
 	}
 
-	console.log(str);
 	return gameId + sum;
 }, 0);
 
