@@ -8,12 +8,15 @@ const cardTotals = rows.map((row) => {
   });
   return myNumbers.filter(num => winningNumbers.includes(num)).length;
 });
+
 cardTotals.unshift(cardTotals.length);
+let sum = -1;
 
-function evalCard(rowIndex) {
-  return 1 + Array(cardTotals[rowIndex] || 0).fill(1).reduce((sum, one, idx) => {
-    return sum + evalCard(rowIndex + idx + one);
-  }, 0);
-}
+(function evalCard(rowIndex) {
+  sum += 1;
+  Array(cardTotals[rowIndex] || 0).fill(1).forEach((one, idx) => {
+    evalCard(rowIndex + idx + one);
+  });
+})(0);
 
-console.log(evalCard(0) - 1); // subtract one for the bogus starting card
+console.log(sum);
