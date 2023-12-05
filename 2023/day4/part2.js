@@ -4,7 +4,7 @@ const rows = require('fs').readFileSync('./data.txt').toString().split("\n").fil
 const cardTotals = [rows.length, ...rows.map((row) => {
   const [, cardData] = row.split(': ');
   const [winningNumbers, myNumbers] = cardData.split(' | ').map((str) => {
-    return str.trim().split(/\s+/).map(x => Number(x));
+    return str.trim().split(/\s+/);
   });
   return myNumbers.filter(num => winningNumbers.includes(num)).length;
 })];
