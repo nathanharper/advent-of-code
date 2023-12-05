@@ -6,9 +6,7 @@ function stringListToNumberArray(str) {
 
 const total = rows.reduce((sum, row) => {
   const [, cardData] = row.split(': ');
-  const [winningNumberData, myNumberData] = cardData.split(' | ');
-  const winningNumbers = stringListToNumberArray(winningNumberData);
-  const myNumbers = stringListToNumberArray(myNumberData);
+  const [winningNumbers, myNumbers] = cardData.split(' | ').map(stringListToNumberArray);
   const intersection = myNumbers.filter(num => winningNumbers.includes(num));
 
   if (intersection.length < 1) {
