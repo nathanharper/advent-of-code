@@ -16,4 +16,4 @@ function evalCard(rowIndex) {
   }, 0);
 }
 
-console.log(evalCard(0) - 1);
+console.log(evalCard(0) - 1); // subtract one for the bogus starting card
