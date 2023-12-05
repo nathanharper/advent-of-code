@@ -8,15 +8,13 @@ const cardTotals = rows.map((row) => {
   });
   return myNumbers.filter(num => winningNumbers.includes(num)).length;
 });
-
 cardTotals.unshift(cardTotals.length);
-let sum = -1;
 
+let sum = -1;
 (function evalCard(rowIndex) {
   sum += 1;
-  Array(cardTotals[rowIndex] || 0).fill(1).forEach((one, idx) => {
-    evalCard(rowIndex + idx + one);
-  });
+  for (let i = 1; i <= cardTotals[rowIndex]; i++) {
+    evalCard(rowIndex + i);
+  }
 })(0);
-
 console.log(sum);
