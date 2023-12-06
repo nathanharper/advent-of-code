@@ -1,4 +1,4 @@
-const lines = require('fs').readFileSync('./data.txt').toString().split("\n").filter(x => x);
+const lines = require('fs').readFileSync(process.argv[2]).toString().split("\n").filter(x => x);
 
 const getNums = str => str.match(/\d+/g).map(n => Number(n));
 const seeds = getNums(lines.shift());

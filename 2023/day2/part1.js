@@ -1,6 +1,6 @@
 const { readFileSync } = require('fs');
 
-const data = readFileSync('./data.txt').toString().split("\n");
+const data = readFileSync(process.argv[2]).toString().split("\n");
 
 const gameRegex = /^Game (\d+): (.*)$/;
 const resources = {

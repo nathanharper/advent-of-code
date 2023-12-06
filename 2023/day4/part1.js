@@ -1,4 +1,4 @@
-const rows = require('fs').readFileSync('./data.txt').toString().split("\n").filter(x => x);
+const rows = require('fs').readFileSync(process.argv[2]).toString().split("\n").filter(x => x);
 
 const total = rows.reduce((sum, row) => {
   const [, cardData] = row.split(': ');

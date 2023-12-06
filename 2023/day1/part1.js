@@ -1,6 +1,6 @@
 const { readFileSync } = require('fs');
 
-const rows = readFileSync('./data.txt').toString().split("\n");
+const rows = readFileSync(process.argv[2]).toString().split("\n");
 const regex = /\d/g;
 
 const total = rows.reduce((acc, txt) => {

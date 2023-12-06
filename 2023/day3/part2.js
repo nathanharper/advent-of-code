@@ -1,4 +1,4 @@
-const rows = require('fs').readFileSync('./data.txt').toString().split("\n").filter(x => x);
+const rows = require('fs').readFileSync(process.argv[2]).toString().split("\n").filter(x => x);
 
 const numTest = /\d/;
 const gearPositions = {};

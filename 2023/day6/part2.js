@@ -1,4 +1,4 @@
-const lines = require('fs').readFileSync('./data.txt').toString().split("\n").filter(x => x);
+const lines = require('fs').readFileSync(process.argv[2]).toString().split("\n").filter(x => x);
 const getNum = str => str.replace(/\s+/g, '').match(/\d+/g).map(n => Number(n)).shift();
 const time = getNum(lines.shift());
 const distance = getNum(lines.shift());

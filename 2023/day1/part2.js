@@ -1,6 +1,6 @@
 const { readFileSync } = require('fs');
 
-const data = readFileSync('./data.txt').toString();
+const data = readFileSync(process.argv[2]).toString();
 const rows = data.split("\n");
 
 const numberWords = {

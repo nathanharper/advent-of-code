@@ -1,4 +1,4 @@
-const rows = require('fs').readFileSync('./data.txt').toString().split("\n").filter(x => x);
+const rows = require('fs').readFileSync(process.argv[2]).toString().split("\n").filter(x => x);
 
 // create an array with the intersection count of each card and a bogus start card
 const cardTotals = [rows.length, ...rows.map((row) => {
