@@ -50,8 +50,8 @@ function compareHands(hand1, hand2) {
   }
 
   for (let i = 0; i < 5; i++) {
-    const c1 = h1.slice(i, i+1);
-    const c2 = h2.slice(i, i+1);
+    const c1 = h1[i];
+    const c2 = h2[i];
     if (c1 !== c2) {
       return cards[c1] - cards[c2];
     }
