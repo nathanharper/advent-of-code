@@ -42,19 +42,18 @@ function getHandScore(hand) {
   return hands[values.join('')];
 }
 
-// returns 1 if h1 wins, -1 if h2 wins, 0 for tie
 function compareHands(hand1, hand2) {
   const [h1Score, h1] = hand1;
   const [h2Score, h2] = hand2;
   if (h1Score !== h2Score) {
-    return h1Score > h2Score ? 1 : -1;
+    return h1Score - h2Score;
   }
 
   for (let i = 0; i < 5; i++) {
     const c1 = h1.slice(i, i+1);
     const c2 = h2.slice(i, i+1);
     if (c1 !== c2) {
-      return cards[c1] > cards[c2] ? 1 : -1;
+      return cards[c1] - cards[c2];
     }
   }
 
