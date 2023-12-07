@@ -1,5 +1,3 @@
-const lines = require('fs').readFileSync(process.argv[2]).toString().split("\n").filter(x => x);
-
 const hands = {
   '11111': 1,
   '1112': 2,
@@ -55,11 +53,21 @@ function compareHands(hand1, hand2) {
   return 0;
 }
 
-const answer = lines.map((line) => {
+function getLineStats(line) {
   const [hand, bid] = line.split(' ');
   const score = getHandScore(hand);
   return [score, hand, Number(bid)];
-}).sort(compareHands).reduce((sum, [,, bid], index) => {
-  return sum + bid * (index + 1);
-}, 0);
+}
+
+const answer = require('fs')
+  .readFileSync(process.argv[2])
+  .toString()
+  .split("\n")
+  .filter(x => x)
+  .map(getLineStats)
+  .sort(compareHands)
+  .reduce((sum, [,, bid], index) => {
+    return sum + bid * (index + 1);
+  }, 0);
+
 console.log(answer)
