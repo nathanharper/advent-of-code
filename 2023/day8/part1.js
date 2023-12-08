@@ -8,15 +8,12 @@ const nodes = lines.reduce((acc, line) => {
 }, {});
 
 let currNode = 'AAA';
-let step = 0;
-let stepTotal = 0;
+let step = -1;
 
-while (true) {
-  stepTotal++;
-  currNode = steps[step] === 'R' ? nodes[currNode][1] : nodes[currNode][0];
+while (++step !== false) {
+  currNode = steps[step % steps.length] === 'R' ? nodes[currNode][1] : nodes[currNode][0];
   if (currNode === 'ZZZ') {
-    console.log(stepTotal);
+    console.log(step + 1);
     break;
   }
-  step = (step + 1) % steps.length;
 }
