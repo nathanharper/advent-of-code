@@ -2,7 +2,7 @@ use std::env;
 use std::fs::File;
 use std::io::prelude::*;
 
-fn find_nums(w: &str) -> std::option::Option<(char, char)> {
+fn find_nums(w: &str) -> (char, char) {
     let mut vec = vec![];
     for chr in w.chars() {
         match chr {
@@ -12,7 +12,7 @@ fn find_nums(w: &str) -> std::option::Option<(char, char)> {
             _ => (),
         };
     }
-    Some((vec[0], vec[vec.len() - 1]))
+    (vec[0], vec[vec.len() - 1])
 }
 
 fn main() -> std::io::Result<()> {
@@ -24,12 +24,9 @@ fn main() -> std::io::Result<()> {
     let rows = contents.split("\n");
     let total = rows.fold(0, |sum, txt| {
         if txt.len() == 0 { return sum }
-        let pair = find_nums(txt);
-        let num_str = match pair {
-            Some((x, y)) => Ok(format!("{}{}", x, y)),
-            _ => Err("fuck you"),
-        };
-        let combined_int = num_str.unwrap().parse::<i32>().unwrap();
+        let (x, y) = find_nums(txt);
+        let num_str = format!("{}{}", x, y);
+        let combined_int = num_str.parse::<i32>().unwrap();
         sum + combined_int
     });
     println!("{}", total);
