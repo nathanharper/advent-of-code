@@ -1,6 +1,5 @@
-const { readFileFromArg } = require('../../util/js/file');
 const last = arr => arr[arr.length - 1];
-const histories = readFileFromArg().map(line => {
+const histories = require('../../util/js/readFileFromArg')().map(line => {
   return line.split(' ').map(s => Number(s));
 });
 
