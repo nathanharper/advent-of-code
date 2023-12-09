@@ -14,14 +14,14 @@ function getNextSequence(seq) {
 
 function getAllSequences(seq) {
   const seqList = [seq];
-  while (!last(seqList).every(x => x === 0)) {
-    seqList.push(getNextSequence(last(seqList)));
+  while (!seqList[0].every(x => x === 0)) {
+    seqList.unshift(getNextSequence(seqList[0]));
   }
   return seqList;
 }
 
 function extrapolateSequence(seq) {
-  const sequences = getAllSequences(seq).reverse();
+  const sequences = getAllSequences(seq);
   return sequences.reduce((acc, s) => {
     return acc + last(s);
   }, last(sequences.shift()));
