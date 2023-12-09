@@ -5,19 +5,12 @@ use std::io::prelude::*;
 fn find_nums(w: &str) -> std::option::Option<(char, char)> {
     let mut vec = vec![];
     for chr in w.chars() {
-        if
-            chr == '1'
-            || chr == '2'
-            || chr == '3'
-            || chr == '4'
-            || chr == '5'
-            || chr == '6'
-            || chr == '7'
-            || chr == '8'
-            || chr == '9'
-        {
-            vec.insert(vec.len(), chr);
-        }
+        match chr {
+            '1'..='9' => {
+                vec.insert(vec.len(), chr);
+            },
+            _ => (),
+        };
     }
     Some((vec[0], vec[vec.len() - 1]))
 }
