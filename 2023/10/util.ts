@@ -1,19 +1,14 @@
-import { readFileSync } from 'fs';
-
 type Tile = '|' | '-' | 'L' | 'J' | '7' | 'F';
-type Ground = '.';
-type Varmint = 'S';
-
 type Dir = -1 | 0 | 1;
-type DirTuple = [Dir, Dir];
-type IntTuple = [int, int];
+export type DirTuple = [Dir, Dir];
+export type IntTuple = [int, int];
 type TileMap = {
   [key in Tile]: [DirTuple, DirTuple];
 }
 
 /*
- * each tile type has two tuples, containing a y and x value, in that order.
- * adding these values. to the current position's indices will yield the connected tile positions
+ * Each tile type has two tuples, containing a y and x value, in that order.
+ * Adding these values to the current position's indices will yield the connected tile positions.
  */
 const tileMap = {
   '|': [ [-1,  0], [ 1,  0] ],
@@ -28,8 +23,8 @@ export function processData(data: String): String[] {
   return data.split("\n").filter(x => x);
 }
 
-export function isPosEqual(p1: IntTuple, p2: IntTuple): boolean {
-  return p1[0] === p2[0] && p1[1] === p2[1];
+export function isPosEqual(a: IntTuple, b: IntTuple): boolean {
+  return a.every((x, i) => b[i] === x);
 }
 
 export function findVarmintPosition(map: String[]): IntTuple {
@@ -39,6 +34,12 @@ export function findVarmintPosition(map: String[]): IntTuple {
       return [y, x];
     }
   }
+}
+
+export function hasPos(data: IntTuple[], pos: IntTuple): boolean {
+  return Boolean(data.find((thisPos) => {
+    return isPosEqual(pos, thisPos);
+  }));
 }
 
 export function getTileTransforms(map: String[], pos: IntTuple): [DirTuple, DirTuple] | null {
@@ -86,13 +87,4 @@ export function collectPipeline(map: String[]): IntTuple[] {
       return coll;
     }
   }
-}
-
-export default function solver(data: String): int {
-  const pipeline = collectPipeline(processData(data));
-  return Math.floor(pipeline.length / 2);
-}
-
-if (process.argv[2]) {
-  console.log(solver(readFileSync(process.argv[2]).toString()));
 }
