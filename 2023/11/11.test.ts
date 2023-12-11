@@ -1,3 +1,4 @@
+import { readFileSync } from 'fs';
 import { describe, test, expect, beforeAll } from 'bun:test';
 import {
   processData,
@@ -22,14 +23,14 @@ const sample1 = `
 `;
 
 describe('Day 11', () => {
-  let data1, exRows, exCols;
-  beforeAll(() => {
-    data1 = processData(sample1);
-    exRows = findExpandedRows(data1);
-    exCols = findExpandedCols(data1);
-  });
-
   describe('Util', () => {
+    let data1, exRows, exCols;
+    beforeAll(() => {
+      data1 = processData(sample1);
+      exRows = findExpandedRows(data1);
+      exCols = findExpandedCols(data1);
+    });
+
     test('processData', () => {
       expect(data1.length).toBe(10);
       expect(data1[0].length).toBe(10);
@@ -71,10 +72,16 @@ describe('Day 11', () => {
   });
 
   describe('Part 1', () => {
+    let data;
+    beforeAll(() => {
+      data = readFileSync('./data.txt').toString();
+    });
+
     test('solver', () => {
       expect(solve(sample1, 2)).toBe(374);
       expect(solve(sample1, 10)).toBe(1030);
       expect(solve(sample1, 100)).toBe(8410);
+      expect(solve(data, 2)).toBe(9947476);
     });
   });
 });

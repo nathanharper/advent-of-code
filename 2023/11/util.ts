@@ -16,6 +16,10 @@ export function collectAllGalaxies(map: String[]): IntTuple[] {
   return galaxies;
 }
 
+function numSort(a, b) {
+  return a - b;
+}
+
 export function findGalaxyDistance(
   a: IntTuple,
   b: IntTuple,
@@ -24,7 +28,7 @@ export function findGalaxyDistance(
   multiplier: int
 ): int {
   return a.reduce((sum, x, i): int => {
-    const idxs = [x, b[i]].sort();
+    const idxs = [x, b[i]].sort(numSort);
     const diff = idxs[1] - idxs[0];
     if (diff === 0) return sum;
     const expanded = i === 0 ? expandedRows : expandedCols;
