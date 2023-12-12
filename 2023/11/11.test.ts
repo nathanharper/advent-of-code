@@ -1,4 +1,5 @@
 import { readFileSync } from 'fs';
+import { resolve } from 'path';
 import { describe, test, expect, beforeAll } from 'bun:test';
 import {
   processData,
@@ -74,7 +75,7 @@ describe('Day 11', () => {
   describe('Part 1', () => {
     let data;
     beforeAll(() => {
-      data = readFileSync('./data.txt').toString();
+      data = readFileSync(resolve(__dirname, 'data.txt')).toString();
     });
 
     test('solver', () => {

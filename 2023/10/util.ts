@@ -10,7 +10,7 @@ type TileMap = {
  * Each tile type has two tuples, containing a y and x value, in that order.
  * Adding these values to the current position's indices will yield the connected tile positions.
  */
-const tileMap = {
+const tileMap: TileMap = {
   '|': [ [-1,  0], [ 1,  0] ],
   '-': [ [ 0, -1], [ 0,  1] ],
   'L': [ [-1,  0], [ 0,  1] ],
