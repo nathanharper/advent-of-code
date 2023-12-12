@@ -20,9 +20,11 @@ Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11`;
 
   describe('parseCardNumbers', () => {
     test('given a one line input string representing a card, parses 2 arrays containing "winning numbers" and "my numbers", and returns them as a tuple.', () => {
-      const [winningNumbers, myNumbers] = parseCardNumbers(sampleRow);
-      expect(winningNumbers).toEqual(sampleWinningNumbers);
-      expect(myNumbers).toEqual(sampleMyNumbers);
+      const result = parseCardNumbers(sampleRow);
+      expect(result).toEqual([
+        sampleWinningNumbers,
+        sampleMyNumbers,
+      ]);
     });
   });
 
