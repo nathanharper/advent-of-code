@@ -4,13 +4,13 @@ function last(arr: []): any {
   return arr[arr.length - 1];
 }
 
-function parseInput(data: String): int[][] {
+function parseInput(data: String): number[][] {
   return data.split("\n").filter(x => x).map(line => {
     return line.split(' ').map(s => Number(s));
   });
 }
 
-function getNextSequence(seq: int[]): int[] {
+function getNextSequence(seq: number[]): number[] {
   const next = [];
   for (let i = 0; i < seq.length - 1; i++) {
     next.push(seq[i + 1] - seq[i]);
@@ -18,7 +18,7 @@ function getNextSequence(seq: int[]): int[] {
   return next;
 }
 
-function getAllSequences(seq: int[]): int[][] {
+function getAllSequences(seq: number[]): number[][] {
   const seqList = [seq];
   while (!seqList[0].every(x => x === 0)) {
     seqList.unshift(getNextSequence(seqList[0]));
@@ -26,15 +26,15 @@ function getAllSequences(seq: int[]): int[][] {
   return seqList;
 }
 
-function extrapolateSequence(seq: int[]): int {
+function extrapolateSequence(seq: number[]): number {
   const sequences = getAllSequences(seq);
   return sequences.reduce((acc, s) => {
     return acc + last(s);
   }, last(sequences.shift()));
 }
 
-export default function solver(data: String): int {
-  return parseInput(data).reduce((acc, h): int => {
+export default function solver(data: String): number {
+  return parseInput(data).reduce((acc, h): number => {
     return acc + extrapolateSequence(h);
   }, 0);
 }

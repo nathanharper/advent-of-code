@@ -1,7 +1,7 @@
 type Tile = '|' | '-' | 'L' | 'J' | '7' | 'F';
 type Dir = -1 | 0 | 1;
 export type DirTuple = [Dir, Dir];
-export type IntTuple = [int, int];
+export type IntTuple = [number, number];
 type TileMap = {
   [key in Tile]: [DirTuple, DirTuple];
 }

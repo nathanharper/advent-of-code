@@ -7,7 +7,7 @@ import {
   findGalaxyDistance,
 } from './util';
 
-export default function solve(data: String, multiplier: int): int {
+export default function solve(data: String, multiplier: number): number {
   const map = processData(data);
   const galaxies = collectAllGalaxies(map);
   const rows = findExpandedRows(map);

@@ -1,4 +1,4 @@
-type IntTuple = [int, int];
+type IntTuple = [number, number];
 
 export function processData(data: String): String[] {
   return data.split("\n").filter(x => x);
@@ -23,16 +23,16 @@ function numSort(a, b) {
 export function findGalaxyDistance(
   a: IntTuple,
   b: IntTuple,
-  expandedRows: int[],
-  expandedCols: int[],
-  multiplier: int
-): int {
-  return a.reduce((sum, x, i): int => {
+  expandedRows: number[],
+  expandedCols: number[],
+  multiplier: number
+): number {
+  return a.reduce((sum, x, i): number => {
     const idxs = [x, b[i]].sort(numSort);
     const diff = idxs[1] - idxs[0];
     if (diff === 0) return sum;
     const expanded = i === 0 ? expandedRows : expandedCols;
-    return sum + expanded.reduce((acc, r): int => {
+    return sum + expanded.reduce((acc, r): number => {
       if (r > idxs[0] && r < idxs[1]) {
         acc += multiplier - 1;
       }
@@ -41,7 +41,7 @@ export function findGalaxyDistance(
   }, 0);
 }
 
-export function findExpandedRows(map: String[]): int[] {
+export function findExpandedRows(map: String[]): number[] {
   return map.reduce((acc, row, index) => {
     if (row.indexOf('#') < 0) {
       acc.push(index);
@@ -50,7 +50,7 @@ export function findExpandedRows(map: String[]): int[] {
   }, []);
 }
 
-export function findExpandedCols(map: String[]): int[] {
+export function findExpandedCols(map: String[]): number[] {
   const cols = [];
 
   for (let c = 0; c < map[0].length; c++) {

@@ -16,7 +16,7 @@ type FindConnectedNodesResponse = {
 export class Piper {
   private map: String[] = null;
   private pipeline: IntTuple[] = null;
-  private connections: int[][] = null;
+  private connections: number[][] = null;
 
   constructor(data) {
     this.map = processData(data);
@@ -24,7 +24,7 @@ export class Piper {
     this.connections = this.getConnectionMatrix();
   }
 
-  getConnectionMatrix(): int[][] {
+  getConnectionMatrix(): number[][] {
     // construct an empty matrix
     const width = this.map[0].length;
     const matrix = [];
@@ -52,7 +52,7 @@ export class Piper {
     return y === 0 || y === this.map.length - 1 || x === 0 || x === this.map[0].length - 1;
   }
 
-  getFillCount(): int {
+  getFillCount(): number {
     return -1;
   }
 
@@ -85,7 +85,7 @@ export class Piper {
   }
 }
 
-export default function solver(data: String): int {
+export default function solver(data: String): number {
   return new Piper(data).getFillCount();
 }
 
