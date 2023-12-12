@@ -3,7 +3,7 @@ import {
   calculateScore,
   parseCardNumbers,
   generateScoreArray,
-  calculateCardsWon,
+  calculateCardsWonRecursive,
   solve,
 } from './part2'; // TODO: change this to your solution file
 
@@ -40,11 +40,11 @@ Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11`;
     });
   });
 
-  describe('calculateCardsWon', () => {
+  describe('calculateCardsWonRecursive', () => {
     test('given a 0-based card index with a score of (x), and a card score array, returns 1 plus the total cards won for each of the next x cards.', () => {
       const startCard = 0;
       const scores = generateScoreArray(sampleData);
-      expect(calculateCardsWon(startCard, scores)).toBe(15);
+      expect(calculateCardsWonRecursive(startCard, scores)).toBe(15);
     });
   });
 

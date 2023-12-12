@@ -17,10 +17,10 @@ export function generateScoreArray(str: String): int[] {
   });
 }
 
-export function calculateCardsWon(start: int, scores: int[]): int {
+export function calculateCardsWonRecursive(start: int, scores: int[]): int {
   let sum = 1;
   for (let i = 1; i <= scores[start]; i++) {
-    sum += calculateCardsWon(start + i, scores);
+    sum += calculateCardsWonRecursive(start + i, scores);
   }
   return sum;
 }
@@ -28,7 +28,7 @@ export function calculateCardsWon(start: int, scores: int[]): int {
 export function solve(data: String): int {
   const scores = generateScoreArray(data);
   return scores.reduce((sum, score, index) => {
-    return sum + calculateCardsWon(index, scores);
+    return sum + calculateCardsWonRecursive(index, scores);
   }, 0);
 }
 
