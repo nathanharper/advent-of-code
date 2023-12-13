@@ -7,7 +7,6 @@ import {
 import solve1 from './part1';
 import solve2, {
   rowDiff,
-  findSmudgedMatches,
   findPivotScore as findPivotScore2,
 } from './part2';
 
@@ -106,19 +105,6 @@ describe('Day 13', () => {
         expect(rowDiff('#.##..##.', '..##..##.')).toBe(1);
         expect(rowDiff('####..##.', '..##..##.')).toBeGreaterThan(1);
         expect(rowDiff('..##..##.', '..##..##.')).toBe(0);
-      });
-    });
-
-    describe('findSmudgedMatches', () => {
-      test('given a string and a string array, returns an array of indices of entries that are off by 1 char', () => {
-        expect(findSmudgedMatches('#.##..##', [
-          '..#.##.#.',
-          '##......#',
-          '##......#',
-          '..#.##.#.',
-          '..##..##.',
-          '#.#.##.#.',
-        ])).toEqual([4]);
       });
     });
 

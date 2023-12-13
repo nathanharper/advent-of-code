@@ -7,24 +7,13 @@ export function rowDiff(r1: String, r2: String): number {
   }, 0);
 }
 
-export function findSmudgedMatches(str: String, rows: String[]): number[] {
-  return rows.reduce((acc, row, i) => {
-    if (i % 2 === 0 && rowDiff(str, row) === 1) acc.push(i);
-    return acc;
-  }, []);
-}
-
 export function findPivotScore(valley: String[]): number {
   // loop rows
   for (let y = 0; y < valley.length - 1; y++) {
-    const matches = findSmudgedMatches(valley[y], valley.slice(y + 1))
-      .map(n => n + 1 + y);
-
     // loop smudge matches
-    for (let i = 0; i < matches.length; i++) {
-      const matchIdx = matches[i];
-      const startIdx = y + ((matchIdx - y - 1) / 2);
-
+    for (let i = y + 1; i < valley.length; i+=2) {
+      if (rowDiff(valley[y], valley[i]) !== 1) continue;
+      const startIdx = y + ((i - y - 1) / 2);
       // loop to check patterns backwards
       for (let z = 0; z <= startIdx; z++) {
         const leftIdx = startIdx - z;
