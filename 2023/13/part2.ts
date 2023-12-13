@@ -17,13 +17,9 @@ export function findPivotScore(valley: String[]): number {
       // loop to check patterns backwards
       for (let z = 0; z <= startIdx; z++) {
         const leftIdx = startIdx - z;
-        if (leftIdx === y) {
-          if (leftIdx === 0) return startIdx + 1;
-          continue;
-        }
         const r1 = valley[leftIdx];
         const r2 = valley[startIdx + 1 + z];
-        if (r2 && r1 !== r2) break;
+        if (r2 && leftIdx !== y && r1 !== r2) break;
         if (leftIdx === 0) return startIdx + 1;
       }
     }
