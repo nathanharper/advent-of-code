@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-import { rotate, processData, findPivotScore } from './util';
+import { rotate, processData } from './util';
 
 export function rowDiff(r1: String, r2: String): number {
   return r1.split('').reduce((diff, char, i) => {
