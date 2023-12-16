@@ -107,16 +107,5 @@ export class BeamField {
     this.memo[key] = true;
     this.data[curr[0]][curr[1]].charge++;
     this.getNextTiles(prev, curr).forEach(next => this.energize(curr, next));
-    /*
-    const stack = [[prevInit, [currInit]]];
-    let prev, moves;
-    while ([prev, moves] = stack.pop()) {
-      console.log(prev, moves)
-      moves.forEach(curr => {
-        this.data[curr[0]][curr[1]].charge++;
-        stack.push([curr, this.getNextTiles(prev, curr)]);
-      });
-    }
-    */
   }
 }
