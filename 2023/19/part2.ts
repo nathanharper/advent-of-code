@@ -7,17 +7,12 @@ type Ranges = {
 };
 
 export function calcScoreFromRanges(ranges: Ranges): number {
-  let sum = 0;
   const {x,m,a,s} = ranges;
   const dx = x[1] - x[0] + 1;
   const dm = m[1] - m[0] + 1;
   const da = a[1] - a[0] + 1;
   const ds = s[1] - s[0] + 1;
-  for (let ix = x[0]; ix <= x[1]; ix++) sum += ix * dm * da * ds;
-  for (let im = m[0]; im <= m[1]; im++) sum += im * dx * da * ds;
-  for (let ia = a[0]; ia <= a[1]; ia++) sum += ia * dx * dm * ds;
-  for (let is = s[0]; is <= s[1]; is++) sum += is * dx * dm * da;
-  return sum;
+  return dx*dm*da*ds;
 }
 
 export function getAdjustedRange(range: [number, number], oper: String, comp: number): [number, number][] {
@@ -48,8 +43,7 @@ export function getAdjustedRange(range: [number, number], oper: String, comp: nu
 
 const ruleRegex = /([xmas])([><])(\d+)/;
 
-export function solveWorkflow(key: String, workflows, rs: Ranges): number {
-    console.log(key, rs);
+export function getRanges(key: String, workflows, rs: Ranges): number {
   if (key === 'R') return 0;
   if (key === 'A') {
     return calcScoreFromRanges(rs);
@@ -61,13 +55,13 @@ export function solveWorkflow(key: String, workflows, rs: Ranges): number {
   for (let i = 0; i < wf.length; i++) {
     const [rule, dest] = wf[i];
     if (!dest) { // we hit the fallback
-      sum += solveWorkflow(rule, workflows, ranges);
+      sum += getRanges(rule, workflows, ranges);
       break;
     }
     const [,rk,oper,compStr] = rule.match(ruleRegex);
     const [hitRange, missRange] = getAdjustedRange(ranges[rk], oper, Number(compStr));
     if (hitRange) {
-      sum += solveWorkflow(dest, workflows, {...ranges, [rk]: hitRange});
+      sum += getRanges(dest, workflows, {...ranges, [rk]: hitRange});
     }
     if (!missRange) break; // we've hit a situation where we can't satisfy the miss condition, so this is a dead path
     ranges[rk] = missRange;
@@ -77,7 +71,7 @@ export function solveWorkflow(key: String, workflows, rs: Ranges): number {
 
 export default function solve(input: String): number {
   const [workflows] = processInput(input);
-  return solveWorkflow('in', workflows, {
+  return getRanges('in', workflows, {
     x: [1,4000],
     m: [1,4000],
     a: [1,4000],
