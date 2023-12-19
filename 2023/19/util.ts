@@ -15,7 +15,6 @@ export function processInput(input: String): [String[][], any] {
 
 export function evaluateRatings(ratings, workflows, start = 'in'): boolean {
   const checks = workflows[start];
-  let result;
   for (let i = 0; i < checks.length; i++) {
     const [check, destination] = checks[i];
     let next;
