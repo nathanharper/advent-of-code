@@ -7,9 +7,7 @@ export function processInput(input: String): [String[][], any] {
     acc[key] = data.split(',').map(x => x.split(':'));
     return acc;
   }, {});
-  const ratings = rawRatings.split(' ').map(x => {
-    return JSON.parse(x.replace(/=/g, ':').replace(/[a-z]/g, z => `"${z}"`));
-  });
+  const ratings = rawRatings.split(' ').map(x => eval(`(${x.replace(/=/g, ':')})`));
   return [ workflows, ratings ];
 }
 

@@ -5,6 +5,7 @@ import {
   processInput,
 } from './util';
 import solve1 from './part1';
+import solve2 from './part2';
 
 const sample1 = `
 px{a<2006:qkq,m>2090:A,rfg}
@@ -61,6 +62,12 @@ describe('Day 19', () => {
   describe('Part 1', () => {
     test('solve', () => {
       expect(solve1(sample1)).toBe(19114);
+    });
+  });
+
+  describe.skip('Part 2', () => {
+    test('solve', () => {
+      expect(solve2(sample1)).toBe(167409079868000);
     });
   });
 });
