@@ -65,7 +65,7 @@ describe('Day 19', () => {
     });
   });
 
-  describe.skip('Part 2', () => {
+  describe('Part 2', () => {
     test('solve', () => {
       expect(solve2(sample1)).toBe(167409079868000);
     });
