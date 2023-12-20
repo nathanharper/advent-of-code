@@ -43,15 +43,14 @@ export function getAdjustedRange(range: [number, number], oper: String, comp: nu
 
 const ruleRegex = /([xmas])([><])(\d+)/;
 
-export function getRanges(key: String, workflows, rs: Ranges): number {
+export function getRanges(key: String, workflows, ranges: Ranges): number {
   if (key === 'R') return 0;
   if (key === 'A') {
-    return calcScoreFromRanges(rs);
+    return calcScoreFromRanges(ranges);
   }
 
   const wf = workflows[key];
   let sum = 0;
-  const ranges = JSON.parse(JSON.stringify(rs)); // clone
   for (let i = 0; i < wf.length; i++) {
     const [rule, dest] = wf[i];
     if (!dest) { // we hit the fallback
