@@ -4,6 +4,10 @@ import {
   isReportSafe,
 } from './shared';
 import { solve as solve1 } from './part1';
+import {
+  isReportSafe as isReportSafe2,
+  solve as solve2,
+} from './part2';
 
 const input = `
 7 6 4 2 1
@@ -42,6 +46,21 @@ describe('Day 2', () => {
   describe('part 1', () => {
     test('solve', () => {
       expect(solve1(input)).toBe(2);
+    });
+  });
+
+  describe('part 2', () => {
+    test('isReportSafe', () => {
+      expect(isReportSafe2([7, 6, 4, 2, 1])).toBe(true);
+      expect(isReportSafe2([1, 2, 7, 8, 9])).toBe(false);
+      expect(isReportSafe2([9, 7, 6, 2, 1])).toBe(false);
+      expect(isReportSafe2([1, 3, 2, 4, 5])).toBe(true);
+      expect(isReportSafe2([8, 6, 4, 4, 1])).toBe(true);
+      expect(isReportSafe2([1, 3, 6, 7, 9])).toBe(true);
+    });
+
+    test('solve', () => {
+      expect(solve2(input)).toBe(4);
     });
   });
 });
